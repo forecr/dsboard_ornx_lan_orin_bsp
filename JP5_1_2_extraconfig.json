@@ -1,0 +1,419 @@
+{
+  "information": {
+    "release": {
+      "releaseVersion": "5.1.2",
+      "releaseEdition": "",
+      "releaseRevision": 0
+    }
+  },
+  "sw": {
+    "NV_L4T_FILE_SYSTEM_AND_OS_COMP": {
+      "name": "File System, OS and Forecr Dsboard Ornx Lan BSP Install",
+      "isVisible": true,
+      "isDetectableInstall": false,
+      "estimateInstallDurationSeconds": 500,
+      "platforms": [
+        {
+          "targetIds": [
+            "JETSON_ORIN_NX_TARGETS"
+          ],
+          "prerequisites": [
+            {
+              "prerequisiteID": "PREREQUISITE_APT_HOST"
+            }
+          ],
+          "architectures": [
+            "x86_64"
+          ],
+          "downloadFiles": [
+            {
+              "url": "T234/Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "fileName": "Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "size": 1505929477,
+              "checksum": "f25931d1b15cc10d11b60395bd33ec1a",
+              "checksumType": "md5",
+              "verifyChecksum": "yes",
+              "packageInstallParameters": {
+                "additionalParameters": {
+                  "installDir": "{{TARGET_ROOT}}/{{BUNDLE_TITLE}}_{{BOARD_ID}}/Linux_for_Tegra/rootfs/",
+                  "installCommands": [
+                    {
+                      "execBash": [
+                        "sudo tar xpf {{FILE_PATH}}",
+                        "cd ..",
+                        "sudo ./tools/l4t_flash_prerequisites.sh",
+                        "sudo ./apply_binaries.sh",
+                        "sudo mkdir -p rootfs/opt/nvidia/deb_repos",
+                        "wget https://github.com/forecr/dsboard_ornx_lan_orin_bsp/raw/master/orin_nx_JP5_1_2_bsp.tar.xz --no-check-certificate 2>downloadstatus.txt",
+                        "tar -xvf orin_nx_JP5_1_2_bsp.tar.xz -C ..",
+                        "mv ../orin_nx_JP5_1_2_bsp/* .. && rmdir ../orin_nx_JP5_1_2_bsp",
+                        "sudo ./apply_binaries.sh",
+                        "cd ..",
+                        "sudo ./replace_bsp_files.sh",
+                        "cd Linux_for_Tegra/",
+                        "sudo tools/l4t_create_default_user.sh -u nvidia -p nvidia -a -n nvidia-desktop --accept-license"
+                      ]
+                    }
+                  ]
+                },
+                "installEngineQueue": "default",
+                "installType": "cmd"
+              }
+            }
+          ],
+          "operatingSystems": [
+            "ubuntu18.04",
+            "ubuntu20.04"
+          ],
+          "dependencies": [
+            {
+              "type": "optional",
+              "id": "NV_L4T_DRIVERS_COMP"
+            }
+          ],
+          "installSizeMB": 4992.66
+        },
+        {
+          "targetIds": [
+            "JETSON_ORIN_NANO_TARGETS"
+          ],
+          "prerequisites": [
+            {
+              "prerequisiteID": "PREREQUISITE_APT_HOST"
+            }
+          ],
+          "architectures": [
+            "x86_64"
+          ],
+          "downloadFiles": [
+            {
+              "url": "T234/Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "fileName": "Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "size": 1505929477,
+              "checksum": "f25931d1b15cc10d11b60395bd33ec1a",
+              "checksumType": "md5",
+              "verifyChecksum": "yes",
+              "packageInstallParameters": {
+                "additionalParameters": {
+                  "installDir": "{{TARGET_ROOT}}/{{BUNDLE_TITLE}}_{{BOARD_ID}}/Linux_for_Tegra/rootfs/",
+                  "installCommands": [
+                    {
+                      "execBash": [
+                        "sudo tar xpf {{FILE_PATH}}",
+                        "cd ..",
+                        "sudo ./tools/l4t_flash_prerequisites.sh",
+                        "sudo ./apply_binaries.sh",
+                        "sudo mkdir -p rootfs/opt/nvidia/deb_repos",
+                        "wget https://github.com/forecr/dsboard_ornx_lan_orin_bsp/raw/master/orin_nano_JP5_1_2_bsp.tar.xz --no-check-certificate 2>downloadstatus.txt",
+                        "tar -xvf orin_nano_JP5_1_2_bsp.tar.xz -C ..",
+                        "mv ../orin_nano_JP5_1_2_bsp/* .. && rmdir ../orin_nano_JP5_1_2_bsp",
+                        "sudo ./apply_binaries.sh",
+                        "cd ..",
+                        "sudo ./replace_bsp_files.sh",
+                        "cd Linux_for_Tegra/",
+                        "sudo tools/l4t_create_default_user.sh -u nvidia -p nvidia -a -n nvidia-desktop --accept-license"
+                      ]
+                    }
+                  ]
+                },
+                "installEngineQueue": "default",
+                "installType": "cmd"
+              }
+            }
+          ],
+          "operatingSystems": [
+            "ubuntu18.04",
+            "ubuntu20.04"
+          ],
+          "dependencies": [
+            {
+              "type": "optional",
+              "id": "NV_L4T_DRIVERS_COMP"
+            }
+          ],
+          "installSizeMB": 4992.66
+        }
+      ],
+      "version": "35.4",
+      "licenseIds": [
+        "NV_JETPACK_OS_EMBEDDED_EULA"
+      ],
+      "id": "NV_L4T_FILE_SYSTEM_AND_OS_COMP",
+      "isPartiallyDetectableInstall": false,
+      "installPath": "{{TARGET_ROOT}}/{{BUNDLE_TITLE}}_{{BOARD_ID}}/Linux_for_Tegra/rootfs/"
+    },
+    "NV_L4T_FLASH_JETSON_LINUX_COMP": {
+      "name": "Forecr Flash Jetson Linux",
+      "isVisible": true,
+      "estimateInstallDurationSeconds": 500,
+      "platforms": [
+        {
+          "componentInstallParameters": {
+            "installDir": "{{TARGET_ROOT}}/{{BUNDLE_TITLE}}_{{BOARD_ID}}/Linux_for_Tegra",
+            "installEngineQueue": "parallel",
+            "installCommands": [
+              {
+                "execBash": [
+                  "set -e",
+                  "unset LC_ALL",
+                  "echo \"Forecr Flash Process\"",
+                  "sudo ./tools/kernel_flash/l4t_initrd_flash.sh --external-device nvme0n1p1 -c tools/kernel_flash/flash_l4t_external.xml -p \"-c bootloader/t186ref/cfg/flash_t234_qspi.xml\" --showlogs --network usb0 jetson-orin-nano-devkit internal",
+                  "sleep 20"
+                ]
+              }
+            ]
+          },
+          "installSizeMB": 9520,
+          "architectures": [
+            "x86_64"
+          ],
+          "downloadFiles": [],
+          "operatingSystems": [
+            "ubuntu18.04",
+            "ubuntu20.04"
+          ],
+          "targetIds": [
+            "JETSON_ORIN_NX_TARGETS",
+            "JETSON_ORIN_NANO_TARGETS"
+          ],
+          "dependencies": [
+            {
+              "type": "optional",
+              "id": "NV_L4T_FILE_SYSTEM_AND_OS_COMP"
+            }
+          ],
+          "prerequisites": []
+        }
+      ],
+      "version": "35.4",
+      "licenseIds": [
+        "NV_JETPACK_OS_EMBEDDED_EULA"
+      ],
+      "id": "NV_L4T_FLASH_JETSON_LINUX_COMP",
+      "isDetectableInstall": false,
+      "isPartiallyDetectableInstall": false
+    }
+  },
+  "hw": {
+    "JETSON_ORIN_NX_8GB": {
+      "name": "Jetson Orin NX 8GB",
+      "products": [
+        "Jetson"
+      ],
+      "deviceIdentificationDetails": {
+        "moduleNames": [
+          "P3767-0001 [8GB]"
+        ],
+        "moduleIds": [
+          "3767-0001"
+        ],
+        "moduleDescription": "P3767-0001 module",
+        "tegraRecoveryModeCodes": [
+          "0955:7423"
+        ],
+        "carrierIds": [
+          "3768-0000"
+        ],
+        "carrierDescription": "P3768-0000 carrier board"
+      },
+      "imagePath": "https://www.forecr.io/cdn/shop/products/nvidia-jetson-orin-nx-orin-nano-dual-lan-carrier-board-dsboard-ornx-lan-590567.png",
+      "storages": [
+        {
+          "id": "nvme",
+          "displayName": "NVMe",
+          "flashOptions": "--storage nvme0n1p1"
+        },
+        {
+          "id": "usb",
+          "displayName": "USB",
+          "flashOptions": "--storage sda1"
+        },
+        {
+          "id": "custom",
+          "displayName": "Custom",
+          "flashOptions": ""
+        }
+      ],
+      "id": "JETSON_ORIN_NX_8GB"
+    },
+    "JETSON_ORIN_NX_16GB": {
+      "name": "Jetson Orin NX 16GB",
+      "products": [
+        "Jetson"
+      ],
+      "deviceIdentificationDetails": {
+        "moduleNames": [
+          "P3767-0000 [16GB]"
+        ],
+        "moduleIds": [
+          "3767-0000"
+        ],
+        "moduleDescription": "P3767-0000 module",
+        "tegraRecoveryModeCodes": [
+          "0955:7323"
+        ],
+        "carrierIds": [
+          "3768-0000"
+        ],
+        "carrierDescription": "P3768-0000 carrier board"
+      },
+      "imagePath": "https://www.forecr.io/cdn/shop/products/nvidia-jetson-orin-nx-orin-nano-dual-lan-carrier-board-dsboard-ornx-lan-590567.png",
+      "storages": [
+        {
+          "id": "nvme",
+          "displayName": "NVMe",
+          "flashOptions": "--storage nvme0n1p1"
+        },
+        {
+          "id": "usb",
+          "displayName": "USB",
+          "flashOptions": "--storage sda1"
+        },
+        {
+          "id": "custom",
+          "displayName": "Custom",
+          "flashOptions": ""
+        }
+      ],
+      "id": "JETSON_ORIN_NX_16GB"
+    },
+    "JETSON_ORIN_NANO_4GB": {
+      "name": "Jetson Orin Nano 4GB",
+      "products": [
+        "Jetson"
+      ],
+      "deviceIdentificationDetails": {
+        "moduleNames": [
+          "P3767-0004 [4GB]"
+        ],
+        "moduleIds": [
+          "3767-0004"
+        ],
+        "moduleDescription": "P3767-0004 module",
+        "tegraRecoveryModeCodes": [
+          "0955:7623"
+        ],
+        "carrierIds": [
+          "3768-0000"
+        ],
+        "carrierDescription": "P3768-0000 carrier board"
+      },
+      "imagePath": "https://www.forecr.io/cdn/shop/products/nvidia-jetson-orin-nx-orin-nano-dual-lan-carrier-board-dsboard-ornx-lan-590567.png",
+      "storages": [
+        {
+          "id": "sdcard",
+          "displayName": "SD Card",
+          "flashOptions": "--storage mmcblk1p1"
+        },
+        {
+          "id": "nvme",
+          "displayName": "NVMe",
+          "flashOptions": "--storage nvme0n1p1"
+        },
+        {
+          "id": "usb",
+          "displayName": "USB",
+          "flashOptions": "--storage sda1"
+        },
+        {
+          "id": "custom",
+          "displayName": "Custom",
+          "flashOptions": ""
+        }
+      ],
+      "id": "JETSON_ORIN_NANO_4GB"
+    },
+    "JETSON_ORIN_NANO_8GB": {
+      "name": "Jetson Orin Nano 8GB",
+      "products": [
+        "Jetson"
+      ],
+      "deviceIdentificationDetails": {
+        "moduleNames": [
+          "P3767-0003 [8GB]"
+        ],
+        "moduleIds": [
+          "3767-0003"
+        ],
+        "moduleDescription": "P3767-0003 module",
+        "tegraRecoveryModeCodes": [
+          "0955:7523"
+        ],
+        "carrierIds": [
+          "3768-0000"
+        ],
+        "carrierDescription": "P3768-0000 carrier board"
+      },
+      "imagePath": "https://www.forecr.io/cdn/shop/products/nvidia-jetson-orin-nx-orin-nano-dual-lan-carrier-board-dsboard-ornx-lan-590567.png",
+      "storages": [
+        {
+          "id": "sdcard",
+          "displayName": "SD Card",
+          "flashOptions": "--storage mmcblk1p1"
+        },
+        {
+          "id": "nvme",
+          "displayName": "NVMe",
+          "flashOptions": "--storage nvme0n1p1"
+        },
+        {
+          "id": "usb",
+          "displayName": "USB",
+          "flashOptions": "--storage sda1"
+        },
+        {
+          "id": "custom",
+          "displayName": "Custom",
+          "flashOptions": ""
+        }
+      ],
+      "id": "JETSON_ORIN_NANO_8GB"
+    },
+    "JETSON_ORIN_NANO_8GB_DEVKIT": {
+      "name": "Jetson Orin Nano [8GB developer kit version]",
+      "products": [
+        "Jetson"
+      ],
+      "deviceIdentificationDetails": {
+        "moduleNames": [
+          "P3767-0005 [8GB DevKit]"
+        ],
+        "moduleIds": [
+          "3767-0005"
+        ],
+        "moduleDescription": "P3767-0005 module",
+        "tegraRecoveryModeCodes": [
+          "0955:7523"
+        ],
+        "carrierIds": [
+          "3768-0000"
+        ],
+        "carrierDescription": "P3768-0000 carrier board"
+      },
+      "imagePath": "https://www.forecr.io/cdn/shop/products/nvidia-jetson-orin-nx-orin-nano-dual-lan-carrier-board-dsboard-ornx-lan-590567.png",
+      "storages": [
+        {
+          "id": "sdcard",
+          "displayName": "SD Card (default)",
+          "flashOptions": "--storage mmcblk1p1"
+        },
+        {
+          "id": "nvme",
+          "displayName": "NVMe",
+          "flashOptions": "--storage nvme0n1p1"
+        },
+        {
+          "id": "usb",
+          "displayName": "USB",
+          "flashOptions": "--storage sda1"
+        },
+        {
+          "id": "custom",
+          "displayName": "Custom",
+          "flashOptions": ""
+        }
+      ],
+      "id": "JETSON_ORIN_NANO_8GB_DEVKIT"
+    }
+  }
+}
